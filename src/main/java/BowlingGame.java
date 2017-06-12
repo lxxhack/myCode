@@ -1,7 +1,7 @@
-import java.util.Scanner;
 public class BowlingGame{
 public int getBowlingScore(String frame){
-	int[] score=new int[22];
+	int cell=10;
+	int[] score=new int[cell*2+2];
 	int total=0;
 	int j=0;
 	int i;
@@ -10,6 +10,7 @@ public int getBowlingScore(String frame){
 	switch(c)
 	{
 		case 'X':score[j++]=10;
+			if (j<cell*2)
 			score[j++]=0;
 		break;
 		case '/':score[j++]=10-score[j-2];
@@ -21,7 +22,7 @@ public int getBowlingScore(String frame){
 		default:score[j++]=c-'0';
 	}
 	}
-	for (i=0;i<20;i+=2)
+	for (i=0;i<cell*2-2;i+=2)
 	{
 		if(score[i]==10)
 		{
@@ -39,6 +40,7 @@ public int getBowlingScore(String frame){
 			total+=score[i]+score[i+1];
 		}
 	}
+	total+=score[i]+score[i+1]+score[i+2]+score[i+3];
 	return total;
 }
 }
